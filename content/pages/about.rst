@@ -29,7 +29,8 @@ Software Preferences
 * Language (interpreted): Python
 * Language (compiled): C, Objective-C
 * IRC Client: `znc <http://wiki.znc.in/>`_, `weechat <http://weechat.org/>`_,
-  `Textual <http://www.codeux.com/textual/>`_, Colloquy iOS
+  `Textual <http://www.codeux.com/textual/>`_,
+  `Palaver <http://palaverapp.com/>`_
 
 My dotfiles can be found `here <https://github.com/kylef/dotfiles/>`_.
 
