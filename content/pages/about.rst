@@ -1,7 +1,7 @@
 :title: About
 
 
-.. image:: /static/images/avatar.jpg
+.. image:: http://www.gravatar.com/avatar/d200a17dd269fd4001bacb11662dab4b.png?s=100
     :width: 100px
     :height: 100px
     :align: right
