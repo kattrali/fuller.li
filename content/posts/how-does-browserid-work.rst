@@ -1,6 +1,7 @@
 How does BrowserID work?
 ########################
 
+:date: 2012-05-07 23:01:04
 :category: Security
 :tags: BrowserID, OpenID, Security
 

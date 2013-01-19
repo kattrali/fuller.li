@@ -1,6 +1,7 @@
 Organising dotfiles in a git repository
 #######################################
 
+:date: 2012-03-28 13:48:07
 :tags: dotfiles, git
 :github: kylef/dotfiles
 

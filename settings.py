@@ -1,6 +1,6 @@
 AUTHOR = 'Kyle Fuller'
 SITENAME = 'Kyle Fuller'
-SITEURL = ''#'//kylefuller.co.uk'
+SITEURL = 'http://kylefuller.co.uk'
 
 THEME = 'theme'
 
