@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kyle Fuller</title><link href="http://kylefuller.co.uk/" rel="alternate"></link><link href="http://kylefuller.co.uk/feeds/misc.atom.xml" rel="self"></link><id>http://kylefuller.co.uk/</id><updated>2012-12-16T03:51:06+00:00</updated><entry><title>Organising dotfiles in a git repository</title><link href="http://kylefuller.co.uk/posts/organising-dotfiles-in-a-git-repository/" rel="alternate"></link><updated>2012-12-16T03:51:06+00:00</updated><author><name>Kyle Fuller</name></author><id>tag:kylefuller.co.uk,2012-12-16:posts/organising-dotfiles-in-a-git-repository/</id><summary type="html">&lt;p&gt;Organising dotfiles can be done in numerous ways. Many dotfile repositories
+often have their own clunky script to copy or symbolically link their dotfiles
+in place. I feel this is a dirty approach and I prefer my files to be easily
+manageable via the git command. I don't want to have to copy a file every time
+I change it.&lt;/p&gt;
+&lt;img alt="/static/images/dotfiles.png" class="align-center" src="/static/images/dotfiles.png" style="width: 589px; height: 276px;" /&gt;
+&lt;p&gt;Another approach I have seen done, is making your whole home directory a git
+repository. Unfortunately after using this solution you will come across a
+number of flaws, any repository in your home directory will now follow your
+&lt;cite&gt;~/.gitignore&lt;/cite&gt;. I also came into many problems when I was using Xcode which
+will try to git add projects into your dotfiles repository. Like symbolic
+linking all my dotfiles into place, this solution also felt clunky.&lt;/p&gt;
+&lt;p&gt;Git allows you to seperate the work tree and the git dir via environment
+variables or arguments to the git command. This allows us to store the bare git
+dir in &lt;cite&gt;~/.files.git&lt;/cite&gt; while still keeping our entire home directory as the work
+tree for git.&lt;/p&gt;
+&lt;p&gt;I settled for using a simple alias in my &lt;cite&gt;.zshrc&lt;/cite&gt; which allows me to easily use
+git to manage my dotfiles. But, it is imporant to remember that the home
+directory will not be seen as a git repository unless you use this alias. You
+won't be able to accidentally use git commands thinking you were in another
+repo, (or accidentally git add a bunch of things in a mercurial repository).&lt;/p&gt;
+&lt;p&gt;Here is the alias I use:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;git --work-tree&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt; --git-dir&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.files.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can use this alias just as you would use the normal git command, this
+allows you to clone and init a repo. To clone a dotfiles repo, you can do:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;home clone git://github.com/kylef/dotfiles.git
+&lt;/pre&gt;&lt;/div&gt;
+</summary><category term="dotfiles"></category><category term="git"></category></entry><entry><title>Website 2.0</title><link href="http://kylefuller.co.uk/posts/website-20/" rel="alternate"></link><updated>2012-03-18T00:00:00+00:00</updated><author><name>Kyle Fuller</name></author><id>tag:kylefuller.co.uk,2012-03-18:posts/website-20/</id><summary type="html">&lt;p&gt;It's taken me nearly a year to finish my new website. I have gone through many
+iterations and have finally stuck with this theme and system.&lt;/p&gt;
+&lt;p&gt;Instead of running my own custom Django blog, this site is now powered by
+&lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;, a static site generator. I have
+created numerous patches for Pelican so that it works with custom URL
+structures, so none of my URL's break when I migrated to Pelican.&lt;/p&gt;
+&lt;div class="section" id="but-this-isn-t-your-second-revision-of-the-site"&gt;
+&lt;h2&gt;But this isn't your second revision of the site?&lt;/h2&gt;
+&lt;p&gt;Ok you got me, this isn't really my second version of this site. I don't know
+how many revisions I have gone through, but this is the second revision to have
+the same content and posts. It's my second major release of the site in a
+version control system. I use a git repository for the current site which can
+be found on github &lt;a class="reference external" href="https://github.com/kylef/kylefuller.co.uk"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-is-new"&gt;
+&lt;h2&gt;What is new?&lt;/h2&gt;
+&lt;p&gt;The theme for the website is completely different, I have made a new &lt;a class="reference external" href="/about/"&gt;about
+page&lt;/a&gt;. I have lost all the comments from my old site, there was far
+too much spam to port them over.&lt;/p&gt;
+&lt;img alt="/static/images/website-20.png" src="/static/images/website-20.png" /&gt;
+&lt;/div&gt;
+</summary><category term="site"></category><category term="pelican"></category></entry><entry><title>Monitoring InspIRCd with MRTG</title><link href="http://kylefuller.co.uk/posts/monitoring-inspircd-mrtg/" rel="alternate"></link><updated>2011-08-13T00:00:00+01:00</updated><author><name>Kyle Fuller</name></author><id>tag:kylefuller.co.uk,2011-08-13:posts/monitoring-inspircd-mrtg/</id><summary type="html">&lt;p&gt;This guide will show you how to configure MRTG to show statistics from an
+InspIRCd IRC server, this will include user counts and channel counts. This
+guide assumes you already have InspIRCd and MRTG setup and working. You can see
+an example of this working at &lt;a href="http://hydra.sector5d.org/"&gt;Sector 5D&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;InspIRCd config&lt;/h3&gt;
+&lt;p&gt;First, you will need to configure InspIRCd to use the &lt;code&gt;m_http&lt;/code&gt; and
+&lt;code&gt;m_http_stats&lt;/code&gt; module. I configure InspIRCd to listen on localhost and port
+8081 with SSL, but you could pick any port you want, just remember to change
+the &lt;code&gt;$address&lt;/code&gt; variable inside &lt;code&gt;inspircd-stats.sh&lt;/code&gt; later.&lt;/p&gt;
+&lt;p&gt;Note, the following config is for InspIRCd 2.0, if you use a older version you
+may need to change the bind line to a http line, please see the InspIRCd wiki
+for using a older version.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;module&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;m_httpd.so&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;module&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;m_httpd_stats.so&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;bind&lt;/span&gt; &lt;span class="na"&gt;address=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;port=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;8081&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;httpd&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ssl=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;gnutls&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you have placed this in your InspIRCd config, you can rehash or reload
+InspIRCd and then you will be able to connect to it over http(s) to retrive
+stats. Such as at https://localhost:8081/stats&lt;/p&gt;
+&lt;h4&gt;Creating a script to gather the user or channel count on InspIRCd&lt;/h4&gt;
+&lt;p&gt;The following script queries the InspIRCd &lt;code&gt;m_httpd_stats&lt;/code&gt; module for the user
+or channel count. This depends on &lt;a href="http://xmlstar.sourceforge.net/"&gt;XMLStarlet&lt;/a&gt;
+(&lt;a href="http://packages.debian.org/search?keywords=xmlstarlet"&gt;Debian package&lt;/a&gt;, &lt;a href="https://aur.archlinux.org/packages.php?ID=20101"&gt;Arch
+AUR Package&lt;/a&gt;), so please
+install this first.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class="nv"&gt;address&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://localhost:8081/stats&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;count_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$count_type&amp;quot;&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;  &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$count_type&amp;quot;&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;channel&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Usage: $0 &amp;lt;user|channel&amp;gt;&amp;quot;&lt;/span&gt;
+  &lt;span class="nb"&gt;exit &lt;/span&gt;1
+&lt;span class="k"&gt;elif&lt;/span&gt;
+
+&lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;wget -q -Y off -O - --no-check-certificate &lt;span class="nv"&gt;$address&lt;/span&gt; | xml sel -t -v &lt;span class="s2"&gt;&amp;quot;inspircdstats/general/${count_type}count&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$count&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$count&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;IRC $count_type&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This script will need to be available from the user which you run MRTG as. I
+have placed mine in &lt;code&gt;/usr/local/bin/inspircd-stats.sh&lt;/code&gt; but you could place it
+somewhere like &lt;code&gt;$HOME/bin/inspircd-stats.sh&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To download and install this to /usr/local/bin run the following:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo mkdir -p /usr/local/bin
+sudo wget https://raw.github.com/gist/1042604/b19a4cfd91b6956063d962c977f3d5f8e3318d7d/inspircd-stats.sh -O /usr/local/bin/inspircd-stats.sh
+sudo chmod+x /usr/local/bin/inspircd-stats.sh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you have this &lt;code&gt;inspircd-stats.sh&lt;/code&gt; script, you can use it to get the user
+and channel count as follows:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;/usr/local/bin/inspircd-stats.sh user
+/usr/local/bin/inspircd-stats.sh channel
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;MRTG Config&lt;/h3&gt;
+&lt;p&gt;You will need to add the following to your mrtg config file, this could be
+located at &lt;code&gt;/etc/mrtg.cfg&lt;/code&gt;, but this depends on how you setup mrtg.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# For IRC Users:&lt;/span&gt;
+&lt;span class="n"&gt;Target&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; `&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inspircd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;`
+&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;IRC&lt;/span&gt; &lt;span class="n"&gt;Users&lt;/span&gt;
+&lt;span class="n"&gt;PageTop&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;h1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;IRC&lt;/span&gt; &lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;h1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;MaxBytes&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; 10000000000
+&lt;span class="n"&gt;ShortLegend&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;
+&lt;span class="n"&gt;YLegend&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Users&lt;/span&gt;
+&lt;span class="n"&gt;LegendI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Users&lt;/span&gt;
+&lt;span class="n"&gt;LegendO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;span class="n"&gt;Legend1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Users&lt;/span&gt;
+&lt;span class="n"&gt;Legend2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;span class="n"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;growright&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nopercent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gauge&lt;/span&gt;
+
+&lt;span class="c"&gt;# For IRC Channels:&lt;/span&gt;
+&lt;span class="n"&gt;Target&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; `&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inspircd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;`
+&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;IRC&lt;/span&gt; &lt;span class="n"&gt;Channels&lt;/span&gt;
+&lt;span class="n"&gt;PageTop&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;h1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;IRC&lt;/span&gt; &lt;span class="n"&gt;Channels&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;h1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;MaxBytes&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; 10000000000
+&lt;span class="n"&gt;ShortLegend&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt;
+&lt;span class="n"&gt;YLegend&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Channels&lt;/span&gt;
+&lt;span class="n"&gt;LegendI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Channels&lt;/span&gt;
+&lt;span class="n"&gt;LegendO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;span class="n"&gt;Legend1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;Channels&lt;/span&gt;
+&lt;span class="n"&gt;Legend2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;span class="n"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;irc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;growright&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nopercent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gauge&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, you can run your MRTG command for your config or wait for the MRTG cron
+and it should show up your InspIRCd stats.&lt;/p&gt;</summary><category term="MRTG"></category><category term="InspIRCd"></category></entry><entry><title>How to install irssi on Dreamhost</title><link href="http://kylefuller.co.uk/posts/how-install-irssi-dreamhost/" rel="alternate"></link><updated>2009-02-24T00:00:00+00:00</updated><author><name>Kyle Fuller</name></author><id>tag:kylefuller.co.uk,2009-02-24:posts/how-install-irssi-dreamhost/</id><summary type="html">&lt;p&gt;This was a useful guide I wrote back on my old website. I was trying to install irssi, and I couldn't remember how I installed it last time. Luckily it was available on archive.org's &lt;a href="http://www.archive.org/web/web.php"&gt;WayBackMachine&lt;/a&gt;. I have updated this guide to glib-2.19.8 and irssi-0.8.15.&lt;/p&gt;
+&lt;p&gt;To install irssi, you can eigher follow the next 7 steps and install from source.&lt;/p&gt;
+&lt;p&gt;Every command on this page should be entered into a SSH Prompt on DreamHost&lt;/p&gt;
+&lt;h3&gt;SSH into your Dreamhost server (for me, this is titan.dreamhost.com, you can find your server inside &lt;a href="https://panel.dreamhost.com/"&gt;panel&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;Create the necessary directories:&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkdir -p bin lib tmp
+chmod 700 bin lib tmp
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Adding lines to your ~/.bash_profile&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export PATH=$PATH:$HOME/bin&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bash_profile
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export PKG_CONFIG_PATH=$HOME/lib/pkgconfig&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bash_profile
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export LD_LIBRARY_PATH=$HOME/lib:/usr/local/lib:$LD_LIBRARY_PATH&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bash_profile
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Activate the new changes&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Download, untar, and install glib&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/tmp
+wget ftp://ftp.gtk.org/pub/glib/2.19/glib-2.19.8.tar.gz
+tar -xvzf glib-2.19.8.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;glib-2.19.8
+./configure --prefix&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Download and install irssi&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/tmp
+wget http://irssi.org/files/irssi-0.8.15.tar.gz
+tar -xvvzf irssi-0.8.15.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;irssi-0.8.15
+./configure --prefix&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Clean up&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;rm -rf ~/tmp/glib-2.19.8.tar.gz ~/tmp/glib-2.19.8 ~/tmp/irssi-0.8.15.tar.gz ~/tmp/irssi-0.8.15
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you have installed it, simply type &lt;code&gt;irssi&lt;/code&gt; to run it.&lt;/p&gt;
+&lt;p&gt;I asked Dreamhost if they would allow the use of a terminal application running
+all the time. Here is their response:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You won’t be in “trouble” for running an irc program (no servers) on our
+servers. However if the system becomes unstable, it would likely be one of
+the first processes killed by our admins as our servers are meant for hosting
+web pages only. In general , we just don’t want users running bots or their
+own server daemons on our servers.”&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="dreamhost"></category></entry><entry><title>Hello, and welcome</title><link href="http://kylefuller.co.uk/posts/hello-welcome/" rel="alternate"></link><updated>2009-02-23T00:00:00+00:00</updated><author><name>Kyle Fuller</name></author><id>tag:kylefuller.co.uk,2009-02-23:posts/hello-welcome/</id><summary type="html">&lt;p&gt;Hello and welcome to my new website. Its been a long time since I have had a
+fully working website, this time I hope to maintain and update this regularly.&lt;/p&gt;
+&lt;p&gt;The design is heavily inspired by &lt;a href="http://www.playgroundblues.com/"&gt;Nathan
+Borrow&lt;/a&gt;, ever since I first saw his website, I
+loved how simple and white it looked. I have tried to make my website quite
+different, but it always goes back to a similar look and feel that &lt;a href="http://www.playgroundblues.com/"&gt;Nathan
+Borrow&lt;/a&gt; has on his site.&lt;/p&gt;
+&lt;h3&gt;What can you find here?&lt;/h3&gt;
+&lt;p&gt;On my website you can find various projects I am working on such as:
+&lt;a href="https://github.com/kylef/pyppp"&gt;PyPPP&lt;/a&gt;. I am also working on
+&lt;a href="https://github.com/kylef/lithium"&gt;lithium&lt;/a&gt; which is the batteries that wern't
+included in Django, it is a suite of applications for writing a Django website,
+it includes a blog, a forum, and many other useful applications.&lt;/p&gt;
+&lt;p&gt;The blog on my website is mainly as a home to post updates and notifications
+based on the projects I am working on, I will also post anything interesting I
+find in Python or Django.&lt;/p&gt;</summary></entry></feed>

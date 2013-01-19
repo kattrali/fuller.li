@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kyle Fuller - dreamhost</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://f.fontdeck.com/s/css/YbEbVONS3yZB1DYf9YVHgZSgeMA/kylefuller.co.uk/14510.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/master.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/pygment.css" type="text/css" />
+
+  <link href="http://kylefuller.co.uk/" type="application/atom+xml" rel="alternate" title="Kyle Fuller ATOM Feed" />
+
+  
+    <link href="http://kylefuller.co.uk/posts/feed/latest" type="application/atom+xml" rel="alternate" title="Kyle Fuller RSS Feed" />
+  
+
+  <link href="https://kylef.tent.is/" rel="https://tent.io/rels/profile" />
+</head>
+
+<body id="">
+  <section>
+    
+  
+    <article>
+      <div class="date">Tue 24 February 2009</div>
+
+      <h1><a href="http://kylefuller.co.uk/posts/how-install-irssi-dreamhost/" rel="bookmark" title="Permalink to How to install irssi on Dreamhost">How to install irssi on Dreamhost</a></h1>
+
+      <div class="entry-content">
+        <p>This was a useful guide I wrote back on my old website. I was trying to install irssi, and I couldn't remember how I installed it last time. Luckily it was available on archive.org's <a href="http://www.archive.org/web/web.php">WayBackMachine</a>. I have updated this guide to glib-2.19.8 and irssi-0.8.15.</p>
+<p>To install irssi, you can eigher follow the next 7 steps and install from source.</p>
+<p>Every command on this page should be entered into a SSH Prompt on DreamHost</p>
+<h3>SSH into your Dreamhost server (for me, this is titan.dreamhost.com, you can find your server inside <a href="https://panel.dreamhost.com/">panel</a>)</h3>
+<h3>Create the necessary directories:</h3>
+<div class="codehilite"><pre>mkdir -p bin lib tmp
+chmod 700 bin lib tmp
+</pre></div>
+
+
+<h3>Adding lines to your ~/.bash_profile</h3>
+<div class="codehilite"><pre><span class="nb">echo</span> <span class="s2">&quot;export PATH=$PATH:$HOME/bin&quot;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">echo</span> <span class="s2">&quot;export PKG_CONFIG_PATH=$HOME/lib/pkgconfig&quot;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">echo</span> <span class="s2">&quot;export LD_LIBRARY_PATH=$HOME/lib:/usr/local/lib:$LD_LIBRARY_PATH&quot;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+
+
+<h3>Activate the new changes</h3>
+<div class="codehilite"><pre><span class="nb">source</span> ~/.bash_profile
+</pre></div>
+
+
+<h3>Download, untar, and install glib</h3>
+<div class="codehilite"><pre><span class="nb">cd</span> ~/tmp
+wget ftp://ftp.gtk.org/pub/glib/2.19/glib-2.19.8.tar.gz
+tar -xvzf glib-2.19.8.tar.gz
+<span class="nb">cd </span>glib-2.19.8
+./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>
+make
+make install
+</pre></div>
+
+
+<h3>Download and install irssi</h3>
+<div class="codehilite"><pre><span class="nb">cd</span> ~/tmp
+wget http://irssi.org/files/irssi-0.8.15.tar.gz
+tar -xvvzf irssi-0.8.15.tar.gz
+<span class="nb">cd </span>irssi-0.8.15
+./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>
+make
+make install
+</pre></div>
+
+
+<h3>Clean up</h3>
+<div class="codehilite"><pre>rm -rf ~/tmp/glib-2.19.8.tar.gz ~/tmp/glib-2.19.8 ~/tmp/irssi-0.8.15.tar.gz ~/tmp/irssi-0.8.15
+</pre></div>
+
+
+<p>Once you have installed it, simply type <code>irssi</code> to run it.</p>
+<p>I asked Dreamhost if they would allow the use of a terminal application running
+all the time. Here is their response:</p>
+<blockquote>
+<p>You won’t be in “trouble” for running an irc program (no servers) on our
+servers. However if the system becomes unstable, it would likely be one of
+the first processes killed by our admins as our servers are meant for hosting
+web pages only. In general , we just don’t want users running bots or their
+own server daemons on our servers.”</p>
+</blockquote>
+      </div>
+    </article>
+  
+
+  <div class="pagination">
+    
+
+    
+  </div>
+
+  </section>
+
+  <aside id="sidebar">
+    <h1>Kyle Fuller</h1>
+
+    <p>I’m <span>Kyle Fuller</span> and I’m a programmer residing in England. You can find me as <span><a href="http://twitter.com/kylefuller">@kylefuller</a></span> on Twitter, or <span><a href="https://github.com/kylef">@kylef</a></span> on Github.</p>
+
+
+    <h4>Some projects I am involved with include:</h4>
+    <ul>
+      
+        <li><a href="http://znc.in/">ZNC</a> — An IRC bouncer with modules & scripts support.</li>
+      
+        <li><a href="http://textualapp.com/">Textual</a> — Textual is a lightweight IRC client created specifically for Mac OS X.</li>
+      
+        <li><a href="https://github.com/kylef/zokket">zokket</a> — An asynchronous socket networking library for python</li>
+      
+        <li><a href="http://readthedocs.org/docs/pyppp/en/latest/">PyPPP</a> — A python implementation of Perfect Paper Passwords a single-use passcode system for multifactor authentication.</li>
+      
+        <li><a href="http://readthedocs.org/docs/lithium/en/latest/">lithium</a> — A set of applications for writing a Django website's, it includes a blog, a wiki, and many other useful applications.</li>
+      
+        <li><a href="https://github.com/kylef/rivr">rivr</a> — A python micro web-framework</li>
+      
+    </ul>
+
+    <h4>Recent Articles</h4>
+    <ul>
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/how-install-irssi-dreamhost/" rel="bookmark"title="Permalink to How to install irssi on Dreamhost">How to install irssi on Dreamhost</a>
+          </li>
+        
+      
+    </ul>
+  </aside>
+
+
+
+
+</body>
+</html>

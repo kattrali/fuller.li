@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Organising dotfiles in a git repository</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://f.fontdeck.com/s/css/YbEbVONS3yZB1DYf9YVHgZSgeMA/kylefuller.co.uk/14510.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/master.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/pygment.css" type="text/css" />
+
+  <link href="http://kylefuller.co.uk/" type="application/atom+xml" rel="alternate" title="Kyle Fuller ATOM Feed" />
+
+  
+    <link href="http://kylefuller.co.uk/posts/feed/latest" type="application/atom+xml" rel="alternate" title="Kyle Fuller RSS Feed" />
+  
+
+  <link href="https://kylef.tent.is/" rel="https://tent.io/rels/profile" />
+</head>
+
+<body id="organising-dotfiles-in-a-git-repository">
+  <section>
+    
+  <article>
+    <div class="date">Sun 16 December 2012</div>
+
+    <h1>Organising dotfiles in a git repository</h1>
+
+    <div class="entry-content">
+      <p>Organising dotfiles can be done in numerous ways. Many dotfile repositories
+often have their own clunky script to copy or symbolically link their dotfiles
+in place. I feel this is a dirty approach and I prefer my files to be easily
+manageable via the git command. I don't want to have to copy a file every time
+I change it.</p>
+<img alt="/static/images/dotfiles.png" class="align-center" src="/static/images/dotfiles.png" style="width: 589px; height: 276px;" />
+<p>Another approach I have seen done, is making your whole home directory a git
+repository. Unfortunately after using this solution you will come across a
+number of flaws, any repository in your home directory will now follow your
+<cite>~/.gitignore</cite>. I also came into many problems when I was using Xcode which
+will try to git add projects into your dotfiles repository. Like symbolic
+linking all my dotfiles into place, this solution also felt clunky.</p>
+<p>Git allows you to seperate the work tree and the git dir via environment
+variables or arguments to the git command. This allows us to store the bare git
+dir in <cite>~/.files.git</cite> while still keeping our entire home directory as the work
+tree for git.</p>
+<p>I settled for using a simple alias in my <cite>.zshrc</cite> which allows me to easily use
+git to manage my dotfiles. But, it is imporant to remember that the home
+directory will not be seen as a git repository unless you use this alias. You
+won't be able to accidentally use git commands thinking you were in another
+repo, (or accidentally git add a bunch of things in a mercurial repository).</p>
+<p>Here is the alias I use:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">alias </span><span class="nv">home</span><span class="o">=</span>git --work-tree<span class="o">=</span><span class="nv">$HOME</span> --git-dir<span class="o">=</span><span class="nv">$HOME</span>/.files.git
+</pre></div>
+<p>You can use this alias just as you would use the normal git command, this
+allows you to clone and init a repo. To clone a dotfiles repo, you can do:</p>
+<div class="highlight"><pre><span class="nv">$ </span>home clone git://github.com/kylef/dotfiles.git
+</pre></div>
+
+    </div>
+
+    <div class="detail">
+      
+
+      <div class="category">
+        <a href="http://kylefuller.co.uk/category/misc.html">misc</a>
+      </div>
+
+      <div class="tags">
+        <ul>
+          
+              <li><a href="http://kylefuller.co.uk/tag/dotfiles.html">dotfiles</a></li>
+          
+              <li><a href="http://kylefuller.co.uk/tag/git.html">git</a></li>
+          
+        </ul>
+      </div>
+    </div>
+
+  
+    <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_identifier = "posts/organising-dotfiles-in-a-git-repository/";
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://kylefuller.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </div>
+  
+  </article>
+
+  </section>
+
+  <aside id="sidebar">
+    <h1>Kyle Fuller</h1>
+
+    <p>I’m <span>Kyle Fuller</span> and I’m a programmer residing in England. You can find me as <span><a href="http://twitter.com/kylefuller">@kylefuller</a></span> on Twitter, or <span><a href="https://github.com/kylef">@kylef</a></span> on Github.</p>
+
+
+    <h4>Some projects I am involved with include:</h4>
+    <ul>
+      
+        <li><a href="http://znc.in/">ZNC</a> — An IRC bouncer with modules & scripts support.</li>
+      
+        <li><a href="http://textualapp.com/">Textual</a> — Textual is a lightweight IRC client created specifically for Mac OS X.</li>
+      
+        <li><a href="https://github.com/kylef/zokket">zokket</a> — An asynchronous socket networking library for python</li>
+      
+        <li><a href="http://readthedocs.org/docs/pyppp/en/latest/">PyPPP</a> — A python implementation of Perfect Paper Passwords a single-use passcode system for multifactor authentication.</li>
+      
+        <li><a href="http://readthedocs.org/docs/lithium/en/latest/">lithium</a> — A set of applications for writing a Django website's, it includes a blog, a wiki, and many other useful applications.</li>
+      
+        <li><a href="https://github.com/kylef/rivr">rivr</a> — A python micro web-framework</li>
+      
+    </ul>
+
+    <h4>Recent Articles</h4>
+    <ul>
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/hello-welcome/" rel="bookmark"title="Permalink to Hello, and welcome">Hello, and welcome</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/how-install-irssi-dreamhost/" rel="bookmark"title="Permalink to How to install irssi on Dreamhost">How to install irssi on Dreamhost</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/pre-populating-data-admin-panel/" rel="bookmark"title="Permalink to Pre-populating data in the admin panel">Pre-populating data in the admin panel</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/monitoring-inspircd-mrtg/" rel="bookmark"title="Permalink to Monitoring InspIRCd with MRTG">Monitoring InspIRCd with MRTG</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/website-20/" rel="bookmark"title="Permalink to Website 2.0">Website 2.0</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/organising-dotfiles-in-a-git-repository/" rel="bookmark"title="Permalink to Organising dotfiles in a git repository">Organising dotfiles in a git repository</a>
+          </li>
+        
+      
+    </ul>
+  </aside>
+
+
+  <a href="https://github.com/kylef/dotfiles" class='github'>
+    <img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+  </a>
+
+
+
+</body>
+</html>

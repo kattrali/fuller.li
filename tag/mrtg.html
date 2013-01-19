@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kyle Fuller - MRTG</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://f.fontdeck.com/s/css/YbEbVONS3yZB1DYf9YVHgZSgeMA/kylefuller.co.uk/14510.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/master.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/pygment.css" type="text/css" />
+
+  <link href="http://kylefuller.co.uk/" type="application/atom+xml" rel="alternate" title="Kyle Fuller ATOM Feed" />
+
+  
+    <link href="http://kylefuller.co.uk/posts/feed/latest" type="application/atom+xml" rel="alternate" title="Kyle Fuller RSS Feed" />
+  
+
+  <link href="https://kylef.tent.is/" rel="https://tent.io/rels/profile" />
+</head>
+
+<body id="">
+  <section>
+    
+  
+    <article>
+      <div class="date">Sat 13 August 2011</div>
+
+      <h1><a href="http://kylefuller.co.uk/posts/monitoring-inspircd-mrtg/" rel="bookmark" title="Permalink to Monitoring InspIRCd with MRTG">Monitoring InspIRCd with MRTG</a></h1>
+
+      <div class="entry-content">
+        <p>This guide will show you how to configure MRTG to show statistics from an
+InspIRCd IRC server, this will include user counts and channel counts. This
+guide assumes you already have InspIRCd and MRTG setup and working. You can see
+an example of this working at <a href="http://hydra.sector5d.org/">Sector 5D</a>.</p>
+<h3>InspIRCd config</h3>
+<p>First, you will need to configure InspIRCd to use the <code>m_http</code> and
+<code>m_http_stats</code> module. I configure InspIRCd to listen on localhost and port
+8081 with SSL, but you could pick any port you want, just remember to change
+the <code>$address</code> variable inside <code>inspircd-stats.sh</code> later.</p>
+<p>Note, the following config is for InspIRCd 2.0, if you use a older version you
+may need to change the bind line to a http line, please see the InspIRCd wiki
+for using a older version.</p>
+<div class="codehilite"><pre><span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;m_httpd.so&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;m_httpd_stats.so&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;bind</span> <span class="na">address=</span><span class="s">&quot;localhost&quot;</span> <span class="na">port=</span><span class="s">&quot;8081&quot;</span> <span class="na">type=</span><span class="s">&quot;httpd&quot;</span> <span class="na">ssl=</span><span class="s">&quot;gnutls&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+
+
+<p>Once you have placed this in your InspIRCd config, you can rehash or reload
+InspIRCd and then you will be able to connect to it over http(s) to retrive
+stats. Such as at https://localhost:8081/stats</p>
+<h4>Creating a script to gather the user or channel count on InspIRCd</h4>
+<p>The following script queries the InspIRCd <code>m_httpd_stats</code> module for the user
+or channel count. This depends on <a href="http://xmlstar.sourceforge.net/">XMLStarlet</a>
+(<a href="http://packages.debian.org/search?keywords=xmlstarlet">Debian package</a>, <a href="https://aur.archlinux.org/packages.php?ID=20101">Arch
+AUR Package</a>), so please
+install this first.</p>
+<div class="codehilite"><pre><span class="c">#!/bin/sh</span>
+
+<span class="nv">address</span><span class="o">=</span><span class="s2">&quot;https://localhost:8081/stats&quot;</span>
+<span class="nv">count_type</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;$count_type&quot;</span> !<span class="o">=</span> <span class="s2">&quot;user&quot;</span>  <span class="o">&amp;&amp;</span> <span class="s2">&quot;$count_type&quot;</span> !<span class="o">=</span> <span class="s2">&quot;channel&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+<span class="k">  </span><span class="nb">echo</span> <span class="s2">&quot;Usage: $0 &lt;user|channel&gt;&quot;</span>
+  <span class="nb">exit </span>1
+<span class="k">elif</span>
+
+<span class="nv">count</span><span class="o">=</span><span class="k">$(</span>wget -q -Y off -O - --no-check-certificate <span class="nv">$address</span> | xml sel -t -v <span class="s2">&quot;inspircdstats/general/${count_type}count&quot;</span><span class="k">)</span>
+
+<span class="nb">echo</span> <span class="nv">$count</span>
+<span class="nb">echo</span> <span class="nv">$count</span>
+<span class="nb">echo</span> <span class="s2">&quot;IRC $count_type&quot;</span>
+</pre></div>
+
+
+<p>This script will need to be available from the user which you run MRTG as. I
+have placed mine in <code>/usr/local/bin/inspircd-stats.sh</code> but you could place it
+somewhere like <code>$HOME/bin/inspircd-stats.sh</code>.</p>
+<p>To download and install this to /usr/local/bin run the following:</p>
+<div class="codehilite"><pre>sudo mkdir -p /usr/local/bin
+sudo wget https://raw.github.com/gist/1042604/b19a4cfd91b6956063d962c977f3d5f8e3318d7d/inspircd-stats.sh -O /usr/local/bin/inspircd-stats.sh
+sudo chmod+x /usr/local/bin/inspircd-stats.sh
+</pre></div>
+
+
+<p>Now you have this <code>inspircd-stats.sh</code> script, you can use it to get the user
+and channel count as follows:</p>
+<div class="codehilite"><pre>/usr/local/bin/inspircd-stats.sh user
+/usr/local/bin/inspircd-stats.sh channel
+</pre></div>
+
+
+<h3>MRTG Config</h3>
+<p>You will need to add the following to your mrtg config file, this could be
+located at <code>/etc/mrtg.cfg</code>, but this depends on how you setup mrtg.</p>
+<div class="codehilite"><pre><span class="c"># For IRC Users:</span>
+<span class="n">Target</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> `<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">inspircd</span><span class="o">-</span><span class="n">stats</span><span class="p">.</span><span class="n">sh</span> <span class="n">user</span>`
+<span class="n">Title</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">IRC</span> <span class="n">Users</span>
+<span class="n">PageTop</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">IRC</span> <span class="n">Users</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="n">MaxBytes</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> 10000000000
+<span class="n">ShortLegend</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">users</span>
+<span class="n">YLegend</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">Users</span>
+<span class="n">LegendI</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">Users</span>
+<span class="n">LegendO</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span>
+<span class="n">Legend1</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">Users</span>
+<span class="n">Legend2</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span>
+<span class="n">Options</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">users</span><span class="p">]:</span> <span class="n">growright</span><span class="p">,</span><span class="n">nopercent</span><span class="p">,</span><span class="n">gauge</span>
+
+<span class="c"># For IRC Channels:</span>
+<span class="n">Target</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> `<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">inspircd</span><span class="o">-</span><span class="n">stats</span><span class="p">.</span><span class="n">sh</span> <span class="n">channel</span>`
+<span class="n">Title</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">IRC</span> <span class="n">Channels</span>
+<span class="n">PageTop</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">IRC</span> <span class="n">Channels</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="n">MaxBytes</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> 10000000000
+<span class="n">ShortLegend</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">channels</span>
+<span class="n">YLegend</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">Channels</span>
+<span class="n">LegendI</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">Channels</span>
+<span class="n">LegendO</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span>
+<span class="n">Legend1</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">Channels</span>
+<span class="n">Legend2</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span>
+<span class="n">Options</span><span class="p">[</span><span class="n">irc</span><span class="p">.</span><span class="n">channels</span><span class="p">]:</span> <span class="n">growright</span><span class="p">,</span><span class="n">nopercent</span><span class="p">,</span><span class="n">gauge</span>
+</pre></div>
+
+
+<p>Now, you can run your MRTG command for your config or wait for the MRTG cron
+and it should show up your InspIRCd stats.</p>
+      </div>
+    </article>
+  
+
+  <div class="pagination">
+    
+
+    
+  </div>
+
+  </section>
+
+  <aside id="sidebar">
+    <h1>Kyle Fuller</h1>
+
+    <p>I’m <span>Kyle Fuller</span> and I’m a programmer residing in England. You can find me as <span><a href="http://twitter.com/kylefuller">@kylefuller</a></span> on Twitter, or <span><a href="https://github.com/kylef">@kylef</a></span> on Github.</p>
+
+
+    <h4>Some projects I am involved with include:</h4>
+    <ul>
+      
+        <li><a href="http://znc.in/">ZNC</a> — An IRC bouncer with modules & scripts support.</li>
+      
+        <li><a href="http://textualapp.com/">Textual</a> — Textual is a lightweight IRC client created specifically for Mac OS X.</li>
+      
+        <li><a href="https://github.com/kylef/zokket">zokket</a> — An asynchronous socket networking library for python</li>
+      
+        <li><a href="http://readthedocs.org/docs/pyppp/en/latest/">PyPPP</a> — A python implementation of Perfect Paper Passwords a single-use passcode system for multifactor authentication.</li>
+      
+        <li><a href="http://readthedocs.org/docs/lithium/en/latest/">lithium</a> — A set of applications for writing a Django website's, it includes a blog, a wiki, and many other useful applications.</li>
+      
+        <li><a href="https://github.com/kylef/rivr">rivr</a> — A python micro web-framework</li>
+      
+    </ul>
+
+    <h4>Recent Articles</h4>
+    <ul>
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/monitoring-inspircd-mrtg/" rel="bookmark"title="Permalink to Monitoring InspIRCd with MRTG">Monitoring InspIRCd with MRTG</a>
+          </li>
+        
+      
+    </ul>
+  </aside>
+
+
+
+
+</body>
+</html>

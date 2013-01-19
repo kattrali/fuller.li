@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kyle Fuller - Articles by Kyle Fuller</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://f.fontdeck.com/s/css/YbEbVONS3yZB1DYf9YVHgZSgeMA/kylefuller.co.uk/14510.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/master.css" type="text/css" />
+  <link rel="stylesheet" href="http://kylefuller.co.uk/theme/css/pygment.css" type="text/css" />
+
+  <link href="http://kylefuller.co.uk/" type="application/atom+xml" rel="alternate" title="Kyle Fuller ATOM Feed" />
+
+  
+    <link href="http://kylefuller.co.uk/posts/feed/latest" type="application/atom+xml" rel="alternate" title="Kyle Fuller RSS Feed" />
+  
+
+  <link href="https://kylef.tent.is/" rel="https://tent.io/rels/profile" />
+</head>
+
+<body id="">
+  <section>
+    
+  
+    <article>
+      <div class="date">Wed 01 July 2009</div>
+
+      <h1><a href="http://kylefuller.co.uk/posts/pre-populating-data-admin-panel/" rel="bookmark" title="Permalink to Pre-populating data in the admin panel">Pre-populating data in the admin panel</a></h1>
+
+      <div class="entry-content">
+        <p>I have always found it awkward working with sites and user's in django admin panel. James Bennet from <a href="http://www.b-list.org/weblog/2008/dec/24/admin/">b-list.org</a> explained his way of doing it on his blog, but I found his way a bit limiting, I still want superusers to be able to change the author of a post.</p>
+<p>After looking around in the source code for <code>ModelAdmin</code> I found two method's, one of which was not documented. These were <code>formfield_for_manytomany</code> and <code>formfield_for_foreignkey</code>. These methods allow us to supply our own FormField, which could have initial data. These methods also get passed the <code>HttpRequest</code>, which contains the user. So we can fill in author of a blog post and the current site.</p>
+<p>In this post I will quickly show you how to use this method to fill in current data based upon the request inside the admin.</p>
+<h3>My model</h3>
+<p>Here is a model from which the rest of the article will work from.</p>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.contrib.sites.models</span> <span class="kn">import</span> <span class="n">Site</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">sites</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Site</span><span class="p">)</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+</pre></div>
+
+
+<p>As you can see, the author is a ForeignKey field, and sites is a ManyToMany field. The methods we use to set the default reflects this. We use <code>formfield_for_foreignkey</code> to set the default user.</p>
+<h3>Here is my ModelAdmin class</h3>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">PostAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">fieldsets</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;content&#39;</span><span class="p">,)</span>
+    <span class="p">}),</span>
+    <span class="p">(</span><span class="s">&#39;Advanced options&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;classes&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;collapse&#39;</span><span class="p">,),</span>
+        <span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;author&#39;</span><span class="p">,</span> <span class="s">&#39;sites&#39;</span><span class="p">,)</span>
+    <span class="p">})</span>
+<span class="p">)</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Post</span><span class="p">,</span> <span class="n">PostAdmin</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Selecting the current site</h3>
+<p>To select the current site, what we will do is create a method called <code>formfield_for_manytomany</code> inside our <code>PostAdmin</code> class. This method will be called each time the admin panel goes to draw a <code>ManyToMany</code> field in a Post. So all we do is set the initial value to the current site. But it is important to remember that the field may be something else, so it is important to check if it is the sites field.</p>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">formfield_for_manytomany</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_field</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">db_field</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;sites&#39;</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;initial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">Site</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_current</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="n">db_field</span><span class="o">.</span><span class="n">formfield</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostAdmin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">formfield_for_manytomany</span><span class="p">(</span><span class="n">db_field</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Selecting the current user</h3>
+<p>This is very similar to selecting the current site, instead we create a method called <code>formfield_for_foreignkey</code> for ForeignKey's instead of <code>ManyToMany</code> fields.</p>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">formfield_for_foreignkey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_field</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">db_field</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;author&#39;</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;initial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">return</span> <span class="n">db_field</span><span class="o">.</span><span class="n">formfield</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostAdmin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">formfield_for_foreignkey</span><span class="p">(</span><span class="n">db_field</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now that we have selected the current user, it would be nice to only let superusers use this field, but I couldn't find a way to only show this for certain users. So instead we will just disallow normal user's from saving the post as another user.</p>
+<p>I dont think it is possible to optionally hide the author field from a user, so what I have done was to disallow a non superuser from editing the post's author.</p>
+<h4>Disallowing a user from changing another post</h4>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">has_change_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">has_class_permission</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostAdmin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">has_change_permission</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_class_permission</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">obj</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+
+
+<p>This snippet was not written by myself, but by James Bennet from <a href="http://www.b-list.org/weblog/2008/dec/24/admin/">b-list.org</a>.</p>
+<h3>Only let the user view their own posts</h3>
+<p>Another measure to limit the possibilities of the user can be to let the user only view their own posts. To do this we just change the queryset to filter posts where the author is themselves. We still want superusers to see all posts, so only filter it for normal users.</p>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To see a complete example of this you can view the source code for <a href="https://github.com/kylef/lithium">lithium</a>.</p>
+      </div>
+    </article>
+  
+    <article>
+      <div class="date">Sun 18 March 2012</div>
+
+      <h1><a href="http://kylefuller.co.uk/posts/website-20/" rel="bookmark" title="Permalink to Website 2.0">Website 2.0</a></h1>
+
+      <div class="entry-content">
+        <p>It's taken me nearly a year to finish my new website. I have gone through many
+iterations and have finally stuck with this theme and system.</p>
+<p>Instead of running my own custom Django blog, this site is now powered by
+<a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a>, a static site generator. I have
+created numerous patches for Pelican so that it works with custom URL
+structures, so none of my URL's break when I migrated to Pelican.</p>
+<div class="section" id="but-this-isn-t-your-second-revision-of-the-site">
+<h2>But this isn't your second revision of the site?</h2>
+<p>Ok you got me, this isn't really my second version of this site. I don't know
+how many revisions I have gone through, but this is the second revision to have
+the same content and posts. It's my second major release of the site in a
+version control system. I use a git repository for the current site which can
+be found on github <a class="reference external" href="https://github.com/kylef/kylefuller.co.uk">here</a>.</p>
+</div>
+<div class="section" id="what-is-new">
+<h2>What is new?</h2>
+<p>The theme for the website is completely different, I have made a new <a class="reference external" href="/about/">about
+page</a>. I have lost all the comments from my old site, there was far
+too much spam to port them over.</p>
+<img alt="/static/images/website-20.png" src="/static/images/website-20.png" />
+</div>
+
+      </div>
+    </article>
+  
+
+  <div class="pagination">
+    
+      <a class="previous" href="http://kylefuller.co.uk/author/Kyle Fuller.html"><span class="arrow"></span>&laquo; Newer</a>
+    
+
+    
+  </div>
+
+  </section>
+
+  <aside id="sidebar">
+    <h1>Kyle Fuller</h1>
+
+    <p>I’m <span>Kyle Fuller</span> and I’m a programmer residing in England. You can find me as <span><a href="http://twitter.com/kylefuller">@kylefuller</a></span> on Twitter, or <span><a href="https://github.com/kylef">@kylef</a></span> on Github.</p>
+
+
+    <h4>Some projects I am involved with include:</h4>
+    <ul>
+      
+        <li><a href="http://znc.in/">ZNC</a> — An IRC bouncer with modules & scripts support.</li>
+      
+        <li><a href="http://textualapp.com/">Textual</a> — Textual is a lightweight IRC client created specifically for Mac OS X.</li>
+      
+        <li><a href="https://github.com/kylef/zokket">zokket</a> — An asynchronous socket networking library for python</li>
+      
+        <li><a href="http://readthedocs.org/docs/pyppp/en/latest/">PyPPP</a> — A python implementation of Perfect Paper Passwords a single-use passcode system for multifactor authentication.</li>
+      
+        <li><a href="http://readthedocs.org/docs/lithium/en/latest/">lithium</a> — A set of applications for writing a Django website's, it includes a blog, a wiki, and many other useful applications.</li>
+      
+        <li><a href="https://github.com/kylef/rivr">rivr</a> — A python micro web-framework</li>
+      
+    </ul>
+
+    <h4>Recent Articles</h4>
+    <ul>
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/hello-welcome/" rel="bookmark"title="Permalink to Hello, and welcome">Hello, and welcome</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/how-install-irssi-dreamhost/" rel="bookmark"title="Permalink to How to install irssi on Dreamhost">How to install irssi on Dreamhost</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/pre-populating-data-admin-panel/" rel="bookmark"title="Permalink to Pre-populating data in the admin panel">Pre-populating data in the admin panel</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/monitoring-inspircd-mrtg/" rel="bookmark"title="Permalink to Monitoring InspIRCd with MRTG">Monitoring InspIRCd with MRTG</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/website-20/" rel="bookmark"title="Permalink to Website 2.0">Website 2.0</a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="http://kylefuller.co.uk/posts/organising-dotfiles-in-a-git-repository/" rel="bookmark"title="Permalink to Organising dotfiles in a git repository">Organising dotfiles in a git repository</a>
+          </li>
+        
+      
+    </ul>
+  </aside>
+
+
+
+
+</body>
+</html>
