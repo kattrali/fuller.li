@@ -5,8 +5,8 @@ How does BrowserID work?
 :category: Security
 :tags: BrowserID, OpenID, Security
 
-This article will explain how cryptography behind BrowserID works, and lightly
-cover why BrowserID is a better alternative to OpenID.
+This article will explain how the cryptography behind BrowserID works, and
+lightly cover why BrowserID is a better alternative to OpenID.
 
 A website will ask your browser for a BrowserID assertion via JavaScript.
 This will either use a native BrowserID API in your browser, or it will use
