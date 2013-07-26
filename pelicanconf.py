@@ -1,6 +1,10 @@
+from __future__ import unicode_literals
+from os import environ
+
+
 AUTHOR = 'Kyle Fuller'
 SITENAME = 'Kyle Fuller'
-SITEURL = 'http://kylefuller.co.uk'
+SITEURL = environ.get('PELICAN_SITEURL', 'http://kylefuller.co.uk')
 
 THEME = 'theme'
 
@@ -31,3 +35,4 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 
 FEED_RSS = 'posts/feed/latest'
+
