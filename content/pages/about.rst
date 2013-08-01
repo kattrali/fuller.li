@@ -6,7 +6,7 @@
     :height: 100px
     :align: right
 
-I'm Kyle Fuller, and this is my personal website. I am a 20 year old from
+I'm Kyle Fuller, and this is my personal website. I am a 21 year old from
 England.
 
 If you want to contact me, you can e-mail me at inbox @ this site's domain or
@@ -19,7 +19,7 @@ Skills
 
 * Programming languages: C, Objective-C, C++, Python, Ruby
 * Frameworks: Cocoa, `Django <https://www.djangoproject.com>`_
-* Operating systems: iOS, Mac OS X, Linux, Solaris, Windows
+* Operating systems: iOS, Mac OS X, Linux, Solaris
 
 Software Preferences
 --------------------
@@ -33,7 +33,6 @@ Software Preferences
 * Language (interpreted): Python
 * Language (compiled): C, Objective-C
 * IRC Client: `znc <http://wiki.znc.in/>`_, `weechat <http://weechat.org/>`_,
-  `Textual <http://www.codeux.com/textual/>`_,
   `Palaver <http://palaverapp.com/>`_
 
 My dotfiles can be found `here <https://github.com/kylef/dotfiles/>`_.
