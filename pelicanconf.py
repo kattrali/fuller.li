@@ -29,3 +29,5 @@ FEED_RSS = 'posts/feed/latest'
 PLUGIN_PATH = 'plugins'
 PLUGINS = ['assets']
 
+MIXPANEL = 'a688ce764b5d3ca9f51898b03783a4e6'
+

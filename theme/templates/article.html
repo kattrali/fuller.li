@@ -3,6 +3,13 @@
 {% block body_id %}{{ article.slug }}{% endblock %}
 {% block title %}{{ article.title }}{% endblock %}
 
+{% block mixpanel_event %}
+mixpanel.track('View Blog Article', {
+    title: "{{ article.title|striptags }}",
+    category: "{{ article.category }}"
+});
+{% endblock %}
+
 {% block content %}
   <article>
     <h1>{{ article.title }}</h1>
