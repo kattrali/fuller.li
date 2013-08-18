@@ -5,8 +5,7 @@
 
 {% block mixpanel_event %}
 mixpanel.track('View Blog Article', {
-    title: "{{ article.title|striptags }}",
-    category: "{{ article.category }}"
+    title: "{{ article.title|striptags }}"
 });
 {% endblock %}
 
