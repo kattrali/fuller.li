@@ -23,11 +23,13 @@ mixpanel.track('View Blog Article', {
         <div class="date">{{ article.locale_date }}</div>
       </div>#}
 
+        {% if article.tags %}
         <ul class="tags">
           {% for tag in article.tags %}
               <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
           {% endfor %}
         </ul>
+        {% endif %}
 
   {% if DISQUS_SITENAME %}
     <div class="comments">
