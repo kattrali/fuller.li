@@ -5,31 +5,22 @@
 
 {% block content %}
   <article>
-    <div class="date">{{ article.locale_date }}</div>
-
     <h1>{{ article.title }}</h1>
 
     <div class="entry-content">
       {{ article.content }}
     </div>
 
-    <div class="detail">
       {#<div class="time">
         {{ article.locale_date }}
+        <div class="date">{{ article.locale_date }}</div>
       </div>#}
 
-      <div class="category">
-        <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-      </div>
-
-      <div class="tags">
-        <ul>
+        <ul class="tags">
           {% for tag in article.tags %}
               <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
           {% endfor %}
         </ul>
-      </div>
-    </div>
 
   {% if DISQUS_SITENAME %}
     <div class="comments">
