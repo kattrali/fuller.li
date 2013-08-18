@@ -5,8 +5,8 @@ Slug: monitoring-inspircd-mrtg
 
 This guide will show you how to configure MRTG to show statistics from an
 InspIRCd IRC server, this will include user counts and channel counts. This
-guide assumes you already have InspIRCd and MRTG setup and working. You can see
-an example of this working at [Sector 5D](http://hydra.sector5d.org/).
+guide assumes you already have InspIRCd and MRTG setup and working. <s>You can
+see an example of this working at [Sector 5D](http://hydra.sector5d.org/).</s>
 
 ### InspIRCd config
 
