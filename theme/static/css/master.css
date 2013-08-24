@@ -167,7 +167,12 @@ body#page_403 section, body#page_404 section, body#page_50x section {
     .github {
         display: none;
     }
+
+    header h1 a {
+        display: none;
+    }
 }
+
 @media screen and (max-width: 680px) {
     header {
         height: 200px;
