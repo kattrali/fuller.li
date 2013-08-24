@@ -237,3 +237,21 @@ ul.tags li a:hover {
     margin-top: 100px;
 }
 
+.all-posts {
+    margin-bottom: 25px;
+}
+
+.all-posts a {
+    color: #bbb;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    padding-right: 10px;
+}
+
+.all-posts a:hover {
+    background: #ccc;
+    color: #fff;
+    border: 0;
+}
+

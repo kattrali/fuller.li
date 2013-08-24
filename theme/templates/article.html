@@ -10,6 +10,10 @@ mixpanel.track('View Blog Article', {
 {% endblock %}
 
 {% block content %}
+  <div class="all-posts">
+    <a href="{{ SITEURL }}/">&larr; View all posts</a>
+  </div>
+
   <article>
     <h1>{{ article.title }}</h1>
 
