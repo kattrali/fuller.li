@@ -7,8 +7,10 @@ Memory Management with ARC
 :tags: arc, memory management, objective-c, ios, osx
 
 This blog post accompanies a talk I recently gave at NSLondon, you can find the
-slides for this talk `here <https://speakerdeck.com/kylef/memory-management>`_. There may be a video
-availible soon!
+slides for this talk `here <https://speakerdeck.com/kylef/memory-management>`_.
+There will also be a video version of this out shortly, I will post a link once
+it's out on my `Twitter <https://twitter.com/kylefuller>`_. Remember to
+follow me on `Twitter <https://twitter.com/kylefuller>`_!
 
 ARC is a very powerful feature introduced in Xcode in 4.0, along with various
 run-time enhancements. With the introduction of ARC, a lot has changed under the
