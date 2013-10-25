@@ -18,6 +18,10 @@ hood. The Objective-C run-time has a completely new interface for using many of 
 old concepts such as autorelease pools. There is also a new interface for
 retaining and releasing objects.
 
+This post will briefly explain these concepts, along with how they work in the
+runtime. It will include any common mistakes such as retain cycles, the dealloc
+problem and `copy` vs `strong` with blocks.
+
 Retainable Object Pointers
 ==========================
 
