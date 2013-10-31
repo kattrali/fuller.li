@@ -9,8 +9,7 @@ Memory Management with ARC
 This blog post accompanies a talk I recently gave at NSLondon, you can find the
 slides for this talk `here <https://speakerdeck.com/kylef/memory-management>`_.
 There will also be a video version of this out shortly, I will post a link once
-it's out on my `Twitter <https://twitter.com/kylefuller>`_. Remember to
-follow me on `Twitter <https://twitter.com/kylefuller>`_!
+it's out on my `Twitter <https://twitter.com/kylefuller>`_.
 
 ARC is a very powerful feature introduced in Xcode in 4.0, along with various
 run-time enhancements. With the introduction of ARC, a lot has changed under the
@@ -25,9 +24,10 @@ problem and `copy` vs `strong` with blocks.
 Retainable Object Pointers
 ==========================
 
-Firstly, ARC is a tool for managing retainable object pointers. This is any
-kind of pointer to an object which can handle the Objective-C machinery for
-sending the `retain`, `release` and `autorelease` messages.
+Automatic Reference Counting (ARC) is a tool for managing retainable object
+pointers. This is any kind of pointer to an object which can handle the
+Objective-C machinery for sending the `retain`, `release` and `autorelease`
+messages.
 
 These messages are not sent in the way they would have been done pre-ARC, but
 instead using the `objc_retain`, `objc_release` and `objc_retainAutorelease`
