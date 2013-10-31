@@ -230,6 +230,10 @@ ul.tags li a {
     font-size: 12px;
     margin-right: 5px;
     padding: 4px 10px;
+
+    transition:.2s;
+    transition-property: color, background;
+    transition-timing-function: ease-in-out;
 }
 
 ul.tags li a:hover {
@@ -252,11 +256,19 @@ ul.tags li a:hover {
     border-radius: 5px;
     padding: 5px;
     padding-right: 10px;
+
+    transition:.2s;
+    transition-property: color, background;
+    transition-timing-function: ease-in-out;
 }
 
 .all-posts a:hover {
     background: #ccc;
     color: #fff;
     border: 0;
+}
+
+.section h2 {
+    padding-top: 30px;
 }
 
