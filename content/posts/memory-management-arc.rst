@@ -145,14 +145,21 @@ Blocks
 I often see this question of `strong` vs `copy` for blocks and there is a lot
 of confusion about what you should be using.
 
-Blocks which reference local variables will be stored in the current stack, this
-means they are available in the local scope. If you use them outside, you
-must copy them. Otherwise ARC will just retain these objects, and then when
-they go out of memory you'll have a pointer to something that has been released.
+In Apple's transitioning to ARC guide, they mention this:
+
+    Blocks "just work" when you pass blocks up the stack in ARC mode, such as
+    in a return. You don’t have to call Block Copy any more. You still need
+    to use `[^{} copy]` when passing "down" the stack into `arrayWithObjects:`
+    and other methods that do a retain.
+
+Blocks will be stored in the current stack, this means they are available in
+the local scope. If you use them outside, you must make a copy of the block.
+Otherwise ARC will retain these objects, and then when they go out of memory
+you'll have a pointer to something that has been released.
 
 This is not normally a problem, often you will want to run a block from the
-current scope. However, sometimes you want to use them with properties and that
-might mean you will want to use it outside of the current scope. Therefore it
+current stack. However, sometimes you want to use them with properties and that
+might mean you will want to use it outside of the current stack. Therefore it
 is important to take a copy.
 
 .. code-block:: objective-c
