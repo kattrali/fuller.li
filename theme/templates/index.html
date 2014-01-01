@@ -1,7 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="refresh" content="0; url={{ SITEURL }}/{{ POSTS_URL }}">
+      <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    {% assets filters="cssmin", output="css/theme.min.css", "css/master.css", "css/pygment.css" %}
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+    {% endassets %}
+
+      <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
+
+      {% if FEED_RSS %}
+        <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+      {% endif %}
+
+      <link href="https://kylef.tent.is/" rel="https://tent.io/rels/profile" />
+
+      {% if MIXPANEL %}
+        <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+        typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+        b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+        mixpanel.init("{{ MIXPANEL }}");
+    {% block mixpanel_event %}
+        mixpanel.track('Index');
+    {% endblock %}
+        </script>
+       {% endif %}
     </head>
+
+    <body id="index">
+        <section>
+            <p>I am <strong>Kyle Fuller</strong>,<br />Pleased to meet you.</p>
+
+            <ul>
+                <li class="github">
+                    <a href="https://github.com/kylef" target="_blank">
+                        Look at my code on
+                        <img src="{{ SITEURL }}/theme/landing/icon_github.png" width=30 height=30 alt="GitHub" />.
+                    </a>
+                </li>
+                <li class="twitter">
+                    <a href="https://twitter.com/kylefuller" target="_blank">
+                        Follow me on
+                        <img src="{{ SITEURL }}/theme/landing/icon_twitter.png" width=30 height=30 alt="Twitter" />.
+                    </a>
+                </li>
+                <li class="posts">
+                    <a href="{{ SITEURL }}/{{ POSTS_URL }}" target="_blank">
+                        Read my
+                        <img src="{{ SITEURL }}/theme/landing/icon_posts.png" width=30 height=30 alt="Posts" />.
+                    </a>
+                </li>
+                <li class="cocode">
+                    <a href="http://cocode.org" target="_blank">
+                        Check out
+                        <img src="{{ SITEURL }}/theme/landing/icon_cocode.png" width=30 height=30 alt="Cocode" />.
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </body>
 </html>
 

@@ -7,7 +7,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 1.6em;
     letter-spacing: 1px;
     color:#57565e;
@@ -25,7 +25,7 @@ header {
 ::selection { background: #245d85; color: #fff; text-shadow: none; }
 
 h1 {
-    font-size: 30px;
+    font-size: 1.8em;
     margin-top: 5px;
     color: #4E3035;
 }
@@ -64,7 +64,6 @@ h1 a, h2 a, h3 a {
 
 p {
     letter-spacing: 0.5px;
-    font-size: 16px;
 }
 
 p span {
@@ -270,5 +269,107 @@ ul.tags li a:hover {
 
 .section h2 {
     padding-top: 30px;
+}
+
+/* Landing / index page */
+
+body#index {
+    color: black;
+    font-size: 1.6em;
+    font-weight: 200;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body#index p {
+    font-size: 1.2em;
+    line-height: 1.3em;
+    margin: 30px 0 40px 0;
+}
+
+body#index ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+body#index li {
+    display: inline;
+}
+
+body#index li:first-child {
+    display: block;
+}
+
+body#index p strong::before {
+    content: "";
+    display: block;
+    background: url(../landing/doodle.png);
+    background-size: 100% 100%;
+    width: 236px;
+    height: 64px;
+    position: absolute;
+    margin: -59px 0 0 59px;
+    z-index: -1;
+}
+
+body#index a {
+    border: 0;
+    color: black;
+}
+
+body#index li img {
+    transition: all 300ms;
+    vertical-align: sub;
+}
+
+body#index li:hover img {
+    transform: scale(1.10, 1.10);
+    -webkit-transform: scale(1.10, 1.10);
+}
+
+body#index li.github:hover a {
+    color: #7F7F7F;
+}
+
+body#index li.twitter:hover a {
+    color: #1FBAEC;
+}
+
+body#index li.posts:hover a {
+    color: #FCD338;
+}
+
+body#index li.cocode:hover a {
+    color: #EB785D;
+}
+
+@media screen and (max-width: 680px) {
+    body#index li {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    body#index {
+        font-size: 1.4em;
+    }
+
+    body#index section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    body#index p {
+        margin: 20px 0 40px 0;
+    }
+
+    body#index p strong::before {
+        width: 226px;
+    }
 }
 
