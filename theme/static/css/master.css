@@ -78,7 +78,7 @@ section {
 }
 
 img.align-right {
-    padding-left: 15px;
+    margin-left: 15px;
     float: right;
 }
 
@@ -371,5 +371,9 @@ body#index li.cocode:hover a {
     body#index p strong::before {
         width: 226px;
     }
+}
+
+body#page_about img {
+    border-radius: 150px;
 }
 

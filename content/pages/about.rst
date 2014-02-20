@@ -1,46 +1,37 @@
 :title: About
 
-
-.. image:: http://www.gravatar.com/avatar/d200a17dd269fd4001bacb11662dab4b.png?s=100
-    :width: 100px
-    :height: 100px
+.. image:: http://www.gravatar.com/avatar/d200a17dd269fd4001bacb11662dab4b.png?s=300
+    :width: 150px
+    :height: 150px
     :align: right
 
-I'm Kyle Fuller, and this is my personal website. I am a 21 year old from
-England.
+My name is Kyle Fuller, and I'm a developer in London, England.
 
-If you want to contact me, you can e-mail me at inbox @ this site's domain or
-hit me on IRC. I am kylef on freenode and EFnet. If you want to use PGP to
+I'm `@kylefuller <https://twitter.com/kylefuller>`_ on twitter, and I'm `@kylef
+<https://github.com/kylef>`_ on GitHub.
+
+My email address is `inbox` at this site's domain. If you want to use PGP to
 speak to me, my key is `E1650558
 <http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xC73A0893E1650558>`_.
 
-Skills
-------
-
-* Programming languages: C, Objective-C, C++, Python, Ruby
-* Frameworks: Cocoa, `Django <https://www.djangoproject.com>`_
-* Operating systems: iOS, Mac OS X, Linux, Solaris
+I'm very active in open source communities, I'm part of the core team in
+projects such as `Pelican <http://getpelican.com/>`_, and
+`CocoaPods <http://cocoapods.org/>`_, along with `many others
+<https://github.com/kylef?tab=repositories>`_.
 
 Software Preferences
 --------------------
 
 * Operating System: Mac OS X, `ArchLinux <http://archlinux.org/>`_
-* Editor: Vim
-* Shell: zsh
+* Editor: `Vim <http://www.vim.org/>`_
+* Shell: `fish <http://fishshell.com/>`_
 * Version control: `Git <http://git-scm.com>`_
 * Terminal multiplexer: `tmux <http://tmux.sourceforge.net/>`_ + `tmuxinator
   <https://github.com/aziz/tmuxinator>`_
-* Language (interpreted): Python
+* Language (interpreted): `Python <http://www.python.org/>`_
 * Language (compiled): C, Objective-C
 * IRC Client: `znc <http://wiki.znc.in/>`_, `weechat <http://weechat.org/>`_,
   `Palaver <http://palaverapp.com/>`_
 
 My dotfiles can be found `here <https://github.com/kylef/dotfiles/>`_.
 
-Elsewhere
----------
-
-* `github.com/kylef <https://github.com/kylef>`_
-* `twitter.com/kylefuller <http://twitter.com/kylefuller>`_
-* `bitbucket.org/kylef <http://bitbucket.org/kylef>`_
-* `djangopeople.net/kylef <http://djangopeople.net/kylef>`_
