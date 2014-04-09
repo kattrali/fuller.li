@@ -378,13 +378,12 @@ body#page_about img {
 }
 
 .image-zoom img {
-    -webkit-transition-timing-function: ease-out;
-    -webkit-transition-duration: 250ms;
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition-duration: 450ms;
 }
 
 .image-zoom img:hover {
     -webkit-transform: scale(1.50, 1.50);
-    -webkit-transition-timing-function: ease-out;
-    -webkit-transition-duration: 250ms;
+    -webkit-transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
