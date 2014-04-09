@@ -377,3 +377,14 @@ body#page_about img {
     border-radius: 150px;
 }
 
+.image-zoom img {
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+}
+
+.image-zoom img:hover {
+    -webkit-transform: scale(1.50, 1.50);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+}
+
