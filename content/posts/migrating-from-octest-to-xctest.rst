@@ -14,6 +14,12 @@ migration. Xcode will only migrate your code, it will not update your project
 to be testable with XCTest. There are still some steps left and unfortunately
 Apple have not shared any documentation on how to do this.
 
+.. note:: I have later discovered that it does work as expected, but only if
+  you run the conversion from a project directly. If you try running the
+  conversion from a workspace you will get the problems mentioned above. I
+  have filed this as rdar://16581037 so Apple can fix this in the future. For
+  now, you'll need to follow the below steps.
+
 |br|
 
 .. image:: /static/images/migrate-xctest/convert.png

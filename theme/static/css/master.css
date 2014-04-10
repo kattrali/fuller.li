@@ -387,3 +387,18 @@ body#page_about img {
     -webkit-transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
+.note {
+    padding: 10px 15px;
+    border: 2px solid #dfdfdf;
+    background: #efefef;
+}
+
+.note p {
+    display: inline;
+    font-style: italic;
+}
+
+.note .admonition-title {
+    font-weight: bold;
+}
+
