@@ -17,7 +17,7 @@ DEFAULT_PAGINATION = 0
 
 RELATIVE_URLS = False
 
-DIRECT_TEMPLATES = ('index', 'posts_index',)
+DIRECT_TEMPLATES = ('index', 'posts_index', 'tags',)
 PAGINATED_DIRECT_TEMPLATES = ('posts_index',)
 
 POSTS_URL = 'posts/'
@@ -26,6 +26,9 @@ POSTS_INDEX_SAVE_AS = 'posts/index.html'
 ARTICLE_DIR = 'posts'
 ARTICLE_URL = 'posts/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{slug}/index.html'
+TAG_URL = 'posts/tags/{slug}/'
+TAG_SAVE_AS = 'posts/tags/{slug}/index.html'
+TAGS_SAVE_AS = 'posts/tags/index.html'
 
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
