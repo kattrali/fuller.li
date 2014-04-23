@@ -32,6 +32,8 @@ Apple have not shared any documentation on how to do this.
 You can follow these steps to migrate your project to XCTest once you've
 migrated the code with the automatic converter:
 
+---
+
 1. Change the `Wrapper Extension` your project's test target in build
    settings from `ocunit` to `xctest`.
 
@@ -42,7 +44,20 @@ migrated the code with the automatic converter:
         :height: 319px
         :align: center
 
-2. Remove the OCUnit `Run Script` build phase from your project's test target.
+2. This is the scary part, you are going to need to manually edit your Xcode
+   project by hand and replace the product type for your test target. Firstly,
+   close Xcode and then open the project's `project.pbxproj` in your favourite
+   text editor and search for the product type. You will need to change it from
+   `com.apple.product-type.bundle` to `com.apple.product-type.bundle.unit-test`.
+
+.. code-block:: diff
+
+     productReference = 77DC06B215702EDB0001EF8C /* PalaverTests.xctest */
+    -productType = "com.apple.product-type.bundle";
+    +productType = "com.apple.product-type.bundle.unit-test";
+
+
+3. Remove the OCUnit `Run Script` build phase from your project's test target.
 
 .. container:: image-zoom
 
@@ -51,8 +66,10 @@ migrated the code with the automatic converter:
         :height: 319px
         :align: center
 
-3. Replace `SenTestingKit` framework with `XCTest` inside the test target's
-   link with libraries build phase.
+4. Replace `SenTestingKit` framework with `XCTest` inside the test target's
+   link with libraries build phase. Even better, you can `clean up your project
+   <http://tonyarnold.com/2014/04/10/clean-up-your-projects-with-xcode-5.html>`_
+   by enabling modules instead of adding XCTest.
 
 .. container:: image-zoom
 
@@ -61,7 +78,7 @@ migrated the code with the automatic converter:
         :height: 319px
         :align: center
 
-4. For iOS, you may need to add the SDK's developer frameworks so the linker
+5. For iOS, you may need to add the SDK's developer frameworks so the linker
    can find the XCTest framework for iOS when building the project.
 
    You will need to add `$(SDKROOT)/Developer/Library/Frameworks` to the
