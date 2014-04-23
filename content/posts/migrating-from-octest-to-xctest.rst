@@ -22,7 +22,8 @@ Apple have not shared any documentation on how to do this.
 
 |br|
 
-.. image:: /static/images/migrate-xctest/convert.png
+.. image:: /images/migrate-xctest/convert.png
+    :alt: OCUnit is deprecated, Convert to XCTest
     :width: 420px
     :height: 129px
     :align: center
@@ -39,7 +40,8 @@ migrated the code with the automatic converter:
 
 .. container:: image-zoom
 
-    .. image:: /static/images/migrate-xctest/wrapper-extension.png
+    .. image:: /images/migrate-xctest/wrapper-extension.png
+        :alt: Test Target's Wrapper Extension
         :width: 636px
         :height: 319px
         :align: center
@@ -61,7 +63,8 @@ migrated the code with the automatic converter:
 
 .. container:: image-zoom
 
-    .. image:: /static/images/migrate-xctest/run-script-build-phase.png
+    .. image:: /images/migrate-xctest/run-script-build-phase.png
+        :alt: OCUnit Run Script Build Phase
         :width: 636px
         :height: 319px
         :align: center
@@ -73,7 +76,8 @@ migrated the code with the automatic converter:
 
 .. container:: image-zoom
 
-    .. image:: /static/images/migrate-xctest/frameworks.png
+    .. image:: /images/migrate-xctest/frameworks.png
+        :alt: Replacing SenTestkingKit for XCTest framework
         :width: 636px
         :height: 319px
         :align: center
@@ -86,7 +90,8 @@ migrated the code with the automatic converter:
 
 .. container:: image-zoom
 
-    .. image:: /static/images/migrate-xctest/framework-search.png
+    .. image:: /images/migrate-xctest/framework-search.png
+        :alt: Adding Developer frameworks to search paths
         :width: 676px
         :height: 316px
         :align: center

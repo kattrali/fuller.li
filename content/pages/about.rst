@@ -1,6 +1,7 @@
 :title: About
 
 .. image:: http://www.gravatar.com/avatar/d200a17dd269fd4001bacb11662dab4b.png?s=300
+    :alt: Kyle Fuller
     :width: 150px
     :height: 150px
     :align: right

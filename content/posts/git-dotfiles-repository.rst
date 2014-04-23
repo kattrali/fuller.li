@@ -11,7 +11,8 @@ in place. I feel this is a dirty approach and I prefer my files to be easily
 manageable via the git command. I don't want to have to copy a file every time
 I change it.
 
-.. image:: /static/images/dotfiles.png
+.. image:: /images/dotfiles.png
+    :alt: Screenshot of organising your dotfiles
     :width: 589px
     :height: 276px
     :align: center

@@ -2,5 +2,6 @@
 
 An unexpected error seems to have occured.
 
-.. image:: /static/images/404.jpg
+.. image:: /images/404.jpg
+    :alt: Server error
 

@@ -43,7 +43,8 @@ into the newly created build phase.
 
 Afterwards, your project should contain a phase looking like this:
 
-.. image:: /static/images/versioning-with-xcode.png
+.. image:: /images/versioning-with-xcode.png
+    :alt: Adding the build phase to your project
     :width: 671px
     :height: 563px
     :align: center
