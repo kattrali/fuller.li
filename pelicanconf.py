@@ -36,7 +36,8 @@ PAGE_SAVE_AS = '{slug}/index.html'
 FEED_RSS = 'posts/feed/latest'
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['assets']
+PLUGINS = ['assets', 'summary']
+SUMMARY_END_MARKER = '---'
 
 MIXPANEL = 'a688ce764b5d3ca9f51898b03783a4e6'
 
