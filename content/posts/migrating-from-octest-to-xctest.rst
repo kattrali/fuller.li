@@ -2,7 +2,7 @@ Migrating from OCUnit to XCTest
 ###############################
 
 :date: 2014-04-09
-:tags: xcode, tdd, xctest, ocunit, sentesting, objective-c
+:tags: Xcode, tdd, XCTest, OCUnit, SenTesting, Objective-C
 
 .. |br| raw:: html
 

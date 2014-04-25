@@ -4,7 +4,7 @@ Memory Management with ARC
 :author: kylef
 :date: 2013-10-24
 :slug: memory-management-arc
-:tags: arc, memory management, objective-c, ios, osx
+:tags: ARC, Memory Management, Objective-C, iOS, OS X
 
 This blog post accompanies a talk I recently gave at NSLondon, you can find the
 slides for this talk `here <https://speakerdeck.com/kylef/memory-management>`_.
