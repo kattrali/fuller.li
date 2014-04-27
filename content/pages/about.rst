@@ -6,9 +6,9 @@
     :height: 150px
     :align: right
 
-My name is Kyle Fuller, and I'm a developer in London, England.
-
-I'm `@kylefuller <https://twitter.com/kylefuller>`_ on twitter, and I'm `@kylef
+I craft beautiful applications and developer tools. Mostly focussing on iPhone
+and iPad. Founder of `Cocode <http://cocode.org/>`_. I'm `@kylefuller
+<https://twitter.com/kylefuller>`_ on twitter, and I'm `@kylef
 <https://github.com/kylef>`_ on GitHub.
 
 My email address is `inbox` at this site's domain. If you want to use PGP to
@@ -18,7 +18,8 @@ speak to me, my key is `E1650558
 I'm very active in open source communities, I'm part of the core team in
 projects such as `Pelican <http://getpelican.com/>`_, and
 `CocoaPods <http://cocoapods.org/>`_, along with `many others
-<https://github.com/kylef?tab=repositories>`_.
+<https://github.com/kylef?tab=repositories>`_. Changes are, you've probably
+ran atleast one line of my code at some point in your life.
 
 Software Preferences
 --------------------
