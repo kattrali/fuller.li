@@ -292,16 +292,16 @@ body#index p {
     margin: 30px 0 40px 0;
 }
 
-body#index ul {
+body#index ul.hero {
     list-style-type: none;
     padding: 0;
 }
 
-body#index li {
+body#index ul.hero li {
     display: inline;
 }
 
-body#index li:first-child {
+body#index ul.hero li:first-child {
     display: block;
 }
 
@@ -322,25 +322,25 @@ body#index a {
     color: black;
 }
 
-body#index li img {
+body#index ul.hero li img {
     transition: all 300ms;
     vertical-align: sub;
 }
 
-body#index li:hover img {
+body#index ul.hero li:hover img {
     transform: scale(1.10, 1.10);
     -webkit-transform: scale(1.10, 1.10);
 }
 
-body#index li.github:hover a {
+body#index ul.hero li.github:hover a {
     color: #7F7F7F;
 }
 
-body#index li.twitter:hover a {
+body#index ul.hero li.twitter:hover a {
     color: #1FBAEC;
 }
 
-body#index li.posts:hover a {
+body#index ul.hero li.posts:hover a {
     color: #FCD338;
 }
 
@@ -349,7 +349,7 @@ body#index li.cocode:hover a {
 }
 
 @media screen and (max-width: 680px) {
-    body#index li {
+    body#index ul.hero li {
         display: block;
     }
 }
