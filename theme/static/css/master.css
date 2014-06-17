@@ -402,3 +402,70 @@ body#page_about img {
     font-weight: bold;
 }
 
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 55px;
+    margin-bottom: 45px;
+}
+
+body#index h3 {
+    color: #1f1f1f;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#projects, #talks {
+    font-size: 0.8em;
+}
+
+#projects ul, #talks ul {
+    margin: 0;
+    padding:0;
+}
+
+#projects li, #talks li {
+    display:block;
+}
+
+body#index #projects a.cocoapods {
+    color: rgba(228, 64, 58, 1);
+}
+
+body#index #projects a.pelican {
+    color:rgba(47,129,183,1);
+}
+
+body#index #projects a.others {
+    border-bottom: 1px solid rgba(235,120,93,1);
+}
+
+body#index #talks a.poland {
+    color: rgba(219,26,63,1);
+}
+
+body#index footer {
+    text-align: center;
+}
+
+body#index footer a {
+    font-size: 0.6em;
+    transition:.1s;
+    transition-property: font-size color;
+    transition-timing-function: ease-in-out;
+}
+
+body#index footer a:hover {
+    font-size: 0.65em;
+}
+
+body#index footer a span {
+    color: rgba(150,150,150,1);
+}
+
+body#index footer a:hover span {
+    color: #323232;
+}
+
