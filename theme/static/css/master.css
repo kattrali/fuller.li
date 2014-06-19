@@ -446,6 +446,10 @@ body#index #talks a.poland {
     color: rgba(219,26,63,1);
 }
 
+body#index #talks a.spain {
+    color: rgba(255,197,1,1);
+}
+
 body#index footer {
     text-align: center;
 }
