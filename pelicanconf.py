@@ -34,6 +34,7 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 
 FEED_RSS = 'posts/feed/latest'
+FEED_ATOM = 'posts/feed/latest.atom'
 
 PLUGIN_PATH = 'plugins'
 PLUGINS = ['assets', 'summary']
