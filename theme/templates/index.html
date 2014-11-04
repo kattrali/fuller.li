@@ -74,14 +74,13 @@
             <hr />
 
             <div id="talks">
-                <h3>Events</h3>
-                <p><small>I'll be attending and speaking at the following events:</small></p>
+                <h3><a href="/speaking/">Speaking</a></h3>
+                <p><small>I'll be speaking at the following events:</small></p>
 
                 <ul>
-                    <li><a href="http://swiftcrunch.com/" class="poland">SwiftCrunch (Krakow, Poland) - July 5th and 6th 2014</a></li>
-                    <li><a href="http://nsspain.com/2014/speakers/" class="spain">NSSpain (Logroño, Spain) - September 17th, 18th and 19th 2014</a></li>
-                    <li><a href="http://www.mobiconf.org/" class="poland">mobiconf (Krakow, Poland) - October 2nd and 3rd 2014</a></li>
-                    <li><a href="http://cmdrconf.com/" class="england">CMD+R (London) - October 22nd and 24th 2014</a></li>
+                  {% for talk in RECENT_TALKS %}
+                    <li class="{{ talk.event.country }}">{{ talk.name }} <span>at</span> <a href="{{ talk.event.url }}">{{ talk.event.name }}</a></li>
+                  {% endfor %}
                 </ul>
             </div>
 

@@ -442,12 +442,30 @@ body#index #projects a.others {
     border-bottom: 1px solid rgba(235,120,93,1);
 }
 
-body#index #talks a.poland {
+body#index #talks li {
+    font-size: 0.8em;
+}
+
+body#index #talks .pl, body#index #talks .pl a {
     color: rgba(219,26,63,1);
 }
 
-body#index #talks a.spain {
+body#index #talks .es, body#index #talks .es a {
     color: rgba(255,197,1,1);
+}
+
+body#index #talks .gb, body#index #talks .gb a {
+    color: #138e4b;
+}
+
+body#index #talks a:hover {
+    border-bottom: 1px solid;
+}
+
+body#index #talks span {
+    color: #e6e6e6;
+    font-style: italic;
+    font-weight: 400;
 }
 
 body#index footer {

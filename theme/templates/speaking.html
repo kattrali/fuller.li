@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Speaking</h2>
+
+<p>I'm an active speaker and I have presented at many popular iOS, OS X
+conferences across the world.</p>
+
+<img src="{{ SITEURL }}/theme/images/speaking.jpg" width="100%" />
+
+<p>If you're interested in having me speak,
+   <a href="mailto:{{ EMAIL }}">get in touch</a>.</p>
+
+{% if UPCOMING_TALKS %}
+<h3>Upcoming</h3>
+
+<ul>
+  {% for talk in UPCOMING_TALKS %}
+    <li>
+    {% if talk.url %}
+      <a href="{{ talk.url }}">{{ talk.name }}</a>
+    {% else %}
+      {{ talk.name }}
+    {% endif %}
+      at <a href="{{ talk.event.url }}">{{ talk.event.name }}</a>
+    {% if talk.slides_url %}
+      (<a href="{{ talk.slides_url }}">Slides</a>)
+    {% endif %}
+      </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if PAST_TALKS %}
+<h3>Past</h3>
+<ul>
+  {% for talk in PAST_TALKS %}
+    <li>
+    {% if talk.url %}
+      <a href="{{ talk.url }}">{{ talk.name }}</a>
+    {% else %}
+      {{ talk.name }}
+    {% endif %}
+      at <a href="{{ talk.event.url }}">{{ talk.event.name }}</a>
+    {% if talk.slides_url %}
+      (<a href="{{ talk.slides_url }}">Slides</a>)
+    {% endif %}
+      </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
