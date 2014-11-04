@@ -1,0 +1,82 @@
+[
+    {
+        "name": "TBA",
+        "status": "upcoming",
+        "event": {
+            "name": "Swift Warsaw",
+            "url": "http://www.meetup.com/Swift-Warsaw/",
+            "country": "pl"
+        }
+    },
+    {
+        "name": "ICYMI: Core Data",
+        "event": {
+            "name": "CMD+R",
+            "url": "http://cmdrconf.com",
+            "country": "gb"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/icymi-core-data-at-cmd-plus-r-2014"
+    },
+    {
+        "name": "Building for Open-Source",
+        "event": {
+            "name": "NSSpain",
+            "url": "http://nsspain.com/2014/",
+            "country": "es"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/building-for-open-source"
+    },
+    {
+        "name": "Building for Open-Source",
+        "event": {
+            "name": "Mobiconf",
+            "url": "http://www.mobiconf.org",
+            "country": "pl"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/building-for-open-source"
+    },
+    {
+        "name": "A Swift Approach",
+        "event": {
+            "name": "NSLondon",
+            "url": "http://nslondon.com",
+            "country": "gb"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/a-swift-approach"
+    },
+    {
+        "name": "DSLs in Swift",
+        "event": {
+            "name": "SwiftCrunch",
+            "url": "http://swiftcrunch.com",
+            "country": "pl"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/dsls-in-swift"
+    },
+    {
+        "name": "Creating your first Pod",
+        "event": {
+            "name": "CocoaPods 3rd WWDC Meetup",
+            "url": "http://blog.cocoapods.org/CocoaPods-WWDC-Party/",
+            "country": "us"
+        }
+    },
+    {
+        "name": "API Blueprint",
+        "event": {
+            "name": "Cocoa Kucha 4",
+            "url": "http://blog.cocoapods.org/Cocoa-Kucha-4/",
+            "country": "us"
+        }
+    },
+    {
+        "name": "Memory Management",
+        "event": {
+            "name": "NSLondon",
+            "url": "http://nslondon.com",
+            "country": "gb"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/memory-management"
+    }
+]
+
