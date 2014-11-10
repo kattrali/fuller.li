@@ -25,7 +25,7 @@ PAGINATED_DIRECT_TEMPLATES = ('posts_index',)
 POSTS_URL = 'posts/'
 POSTS_INDEX_SAVE_AS = 'posts/index.html'
 
-ARTICLE_DIR = 'posts'
+ARTICLE_PATHS = ('posts',)
 ARTICLE_URL = 'posts/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{slug}/index.html'
 TAG_URL = 'posts/tags/{slug}/'
@@ -38,9 +38,12 @@ PAGE_SAVE_AS = '{slug}/index.html'
 FEED_RSS = 'posts/feed/latest'
 FEED_ATOM = 'posts/feed/latest.atom'
 
-PLUGIN_PATH = 'plugins'
+PLUGIN_PATHS = ('plugins',)
 PLUGINS = ['assets', 'summary']
 SUMMARY_END_MARKER = '---'
+
+# Assets (plugins)
+ASSET_SOURCE_PATHS = ('static',)
 
 MIXPANEL = 'a688ce764b5d3ca9f51898b03783a4e6'
 
