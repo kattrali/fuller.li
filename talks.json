@@ -1,5 +1,14 @@
 [
     {
+        "name": "TBA",
+        "status": "upcoming",
+        "event": {
+            "name": "APIdays",
+            "url": "http://www.apidays.io",
+            "country": "fr"
+        }
+    },
+    {
         "name": "A Swift Approach",
         "status": "upcoming",
         "event": {
