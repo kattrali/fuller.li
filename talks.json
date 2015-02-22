@@ -1,21 +1,30 @@
 [
     {
-        "name": "TBA",
-        "status": "upcoming",
+        "name": "Practical Functional Programming",
+        "event": {
+            "name": "dotSwift",
+            "url": "https://speakerdeck.com/kylef/a-swift-approach-warsaw-2014",
+            "country": "fr"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/practical-functional-programming-dotswift-2015"
+    },
+    {
+        "name": "Reacting to Change",
         "event": {
             "name": "APIdays",
             "url": "http://www.apidays.io",
             "country": "fr"
-        }
+        },
+        "slides_url": "https://speakerdeck.com/kylef/reacting-to-change-api-days-2014"
     },
     {
         "name": "A Swift Approach",
-        "status": "upcoming",
         "event": {
             "name": "Swift Warsaw",
             "url": "http://www.meetup.com/Swift-Warsaw/",
             "country": "pl"
-        }
+        },
+        "slides_url": "https://speakerdeck.com/kylef/a-swift-approach-warsaw-2014"
     },
     {
         "name": "ICYMI: Core Data",
