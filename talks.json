@@ -1,5 +1,14 @@
 [
     {
+        "name": "TBA",
+        "event": {
+            "name": "Swift Summit",
+            "url": "https://www.swiftsummit.com/",
+            "country": "gb"
+        },
+        "status": "upcoming"
+    },
+    {
         "name": "Practical Functional Programming",
         "event": {
             "name": "dotSwift",
