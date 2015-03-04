@@ -11,7 +11,7 @@ and iPad. Founder of `Cocode <http://cocode.org/>`_. I'm `@kylefuller
 <https://twitter.com/kylefuller>`_ on twitter, and I'm `@kylef
 <https://github.com/kylef>`_ on GitHub.
 
-My email address is `inbox` at this site's domain. If you want to use PGP to
+My email address is `kyle` at `fuller.li`. If you want to use PGP to
 speak to me, my key is `E1650558
 <http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xC73A0893E1650558>`_.
 
@@ -31,7 +31,7 @@ Software Preferences
 * Terminal multiplexer: `tmux <http://tmux.sourceforge.net/>`_ + `tmuxinator
   <https://github.com/aziz/tmuxinator>`_
 * Language (interpreted): `Python <http://www.python.org/>`_
-* Language (compiled): C, Objective-C
+* Language (compiled): Swift
 * IRC Client: `znc <http://wiki.znc.in/>`_, `weechat <http://weechat.org/>`_,
   `Palaver <http://palaverapp.com/>`_
 
