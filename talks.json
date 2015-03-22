@@ -1,12 +1,12 @@
 [
     {
-        "name": "TBA",
+        "name": "Embracing Change with REST",
         "event": {
             "name": "Swift Summit",
             "url": "https://www.swiftsummit.com/",
             "country": "gb"
         },
-        "status": "upcoming"
+        "slides_url": "https://speakerdeck.com/kylef/embracing-change-with-rest"
     },
     {
         "name": "Practical Functional Programming",
@@ -15,7 +15,8 @@
             "url": "https://speakerdeck.com/kylef/a-swift-approach-warsaw-2014",
             "country": "fr"
         },
-        "slides_url": "https://speakerdeck.com/kylef/practical-functional-programming-dotswift-2015"
+        "slides_url": "https://speakerdeck.com/kylef/practical-functional-programming-dotswift-2015",
+        "video_url": "http://www.thedotpost.com/2015/02/kyle-fuller-practical-functional-programming-in-swift"
     },
     {
         "name": "Reacting to Change",

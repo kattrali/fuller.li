@@ -6,11 +6,6 @@
 <p>I'm an active speaker and I have presented at many popular iOS, OS X
 conferences across the world.</p>
 
-<img src="{{ SITEURL }}/theme/images/speaking.jpg" width="100%" />
-
-<p>If you're interested in having me speak,
-   <a href="mailto:{{ EMAIL }}">get in touch</a>.</p>
-
 {% if UPCOMING_TALKS %}
 <h3>Upcoming</h3>
 
@@ -42,13 +37,22 @@ conferences across the world.</p>
       {{ talk.name }}
     {% endif %}
       at <a href="{{ talk.event.url }}">{{ talk.event.name }}</a>
-    {% if talk.slides_url %}
-      (<a href="{{ talk.slides_url }}">Slides</a>)
+      {% if talk.video_url or talk.slides_url %}({% endif %}
+    {% if talk.video_url %}
+      <a href="{{ talk.video_url }}">Video</a>
     {% endif %}
+    {% if talk.slides_url %}
+      <a href="{{ talk.slides_url }}">Slides</a>
+    {% endif %}
+      {% if talk.video_url or talk.slides_url %}){% endif %}
       </li>
   {% endfor %}
 </ul>
 {% endif %}
 
+<img src="{{ SITEURL }}/theme/images/speaking.jpg" width="100%" />
+
+<p>If you're interested in having me speak,
+   <a href="mailto:{{ EMAIL }}">get in touch</a>.</p>
 {% endblock %}
 
