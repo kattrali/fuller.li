@@ -19,7 +19,7 @@ DEFAULT_PAGINATION = 0
 
 RELATIVE_URLS = False
 
-DIRECT_TEMPLATES = ('index', 'posts_index', 'tags', 'speaking')
+DIRECT_TEMPLATES = ('index', 'posts_index', 'tags', 'speaking', 'slides', 'talks',)
 PAGINATED_DIRECT_TEMPLATES = ('posts_index',)
 
 POSTS_URL = 'posts/'
@@ -50,6 +50,8 @@ MIXPANEL = 'a688ce764b5d3ca9f51898b03783a4e6'
 # Speaking
 
 SPEAKING_SAVE_AS = 'speaking/index.html'
+TALKS_SAVE_AS = 'talks/index.html'
+SLIDES_SAVE_AS = 'slides/index.html'
 
 with open('talks.json', 'r') as fp:
     TALKS = json.load(fp)
