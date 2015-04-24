@@ -1,5 +1,14 @@
 [
     {
+        "name": "Unleashing Hyperdrive",
+        "event": {
+            "name": "Apiary",
+            "url": "https://www.eventbrite.com/e/apis-that-dont-lie-automated-testing-registration-16360940012",
+            "country": "sf"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/unleashing-hyperdrive"
+    },
+    {
         "name": "Embracing Change with REST",
         "event": {
             "name": "Swift Summit",
