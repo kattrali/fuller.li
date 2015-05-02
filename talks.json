@@ -1,5 +1,14 @@
 [
     {
+        "name": "Hyperdrive: Hypermedia API Client",
+        "event": {
+            "name": "Open Source Show & Tell",
+            "url": "http://opensourceshowandtell.com/",
+            "country": "sf"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/unleashing-hyperdrive"
+    },
+    {
         "name": "Unleashing Hyperdrive",
         "event": {
             "name": "Apiary",
