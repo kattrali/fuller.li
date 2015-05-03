@@ -19,6 +19,8 @@ never modify your local project, just the created build.
     defaults write "${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}" "CFBundleShortVersionString" "${GIT_RELEASE_VERSION#*v}"
     defaults write "${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}" "CFBundleVersion" "${COMMITS}"
 
+---
+
 Once you have the build phase in place, your version number will be created
 using the last git tag. If the build was generated right after creating a git
 tag. Then the version will simply be the tag. If you have made a few commits
