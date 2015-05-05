@@ -1,5 +1,14 @@
 [
     {
+        "name": "Practical Declaritive Programming",
+        "event": {
+            "name": "AltConf",
+            "url": "http://altconf.com/",
+            "country": "sf"
+        },
+        "status": "upcoming"
+    },
+    {
         "name": "Hyperdrive: Hypermedia API Client",
         "event": {
             "name": "Open Source Show & Tell",
