@@ -1,5 +1,14 @@
 [
     {
+        "name": "Building Resilient API Clients",
+        "event": {
+            "name": "East Bay Developers Meetup",
+            "url": "http://www.meetup.com/EastBayDevelopers/events/2228501541/",
+            "country": "sf"
+        },
+        "status": "upcoming"
+    },
+    {
         "name": "Practical Declaritive Programming",
         "event": {
             "name": "AltConf",
