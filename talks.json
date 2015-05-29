@@ -1,5 +1,14 @@
 [
     {
+        "name": "Practical Declaritive Programming",
+        "event": {
+            "name": "360 iDev",
+            "url": "http://360idev.com",
+            "country": "us"
+        },
+        "status": "upcoming"
+    },
+    {
         "name": "Building Resilient API Clients",
         "event": {
             "name": "East Bay Developers Meetup",
