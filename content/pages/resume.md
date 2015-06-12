@@ -19,7 +19,14 @@ design team.
 
 ### Experience
 
-#### Mentally Friendly (2012 - Present)
+#### Apiary (2014 - Present)
+At Apiary I've focussed on the experiance and consumption of API Blueprint, our
+API description language based on markdown. I've rehauled our documentation
+along with building tooling such as a Swift framework for utilising API
+Blueprints at run-time, to allow you to build de-coupled applications that
+can evolve based on server side changes without changing code in the client.
+
+#### Mentally Friendly (June 2012 - September 2014)
 I’ve been a key member of the mobile development team at Mentally Friendly,
 leading the iOS and Android teams to create high-profile mobile applications
 for clients such as the Guardian, Fitness First and Soho House.
