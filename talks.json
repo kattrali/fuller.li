@@ -24,7 +24,7 @@
             "url": "http://altconf.com/",
             "country": "sf"
         },
-        "status": "upcoming"
+        "slides_url": "https://speakerdeck.com/kylef/practical-declarative-programming-altconf-2015"
     },
     {
         "name": "Hyperdrive: Hypermedia API Client",
