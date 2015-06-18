@@ -15,7 +15,7 @@
             "url": "http://www.meetup.com/EastBayDevelopers/events/2228501541/",
             "country": "sf"
         },
-        "status": "upcoming"
+        "slides_url": "https://speakerdeck.com/kylef/building-resilient-api-clients"
     },
     {
         "name": "Practical Declaritive Programming",
