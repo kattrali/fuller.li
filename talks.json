@@ -11,6 +11,15 @@
     {
         "name": "Building Resilient API Clients",
         "event": {
+            "name": "Swift Language User Group",
+            "url": "http://www.meetup.com/swift-language/events/223008227/",
+            "country": "sf"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/building-resilient-api-clients-slug"
+    },
+    {
+        "name": "Building Resilient API Clients",
+        "event": {
             "name": "East Bay Developers Meetup",
             "url": "http://www.meetup.com/EastBayDevelopers/events/2228501541/",
             "country": "sf"
