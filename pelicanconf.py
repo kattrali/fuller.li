@@ -8,7 +8,7 @@ SUMMARY_MAX_LENGTH = 90
 AUTHOR = 'Kyle Fuller'
 SITENAME = 'Kyle Fuller'
 EMAIL = 'kyle@fuller.li'
-SITEURL = environ.get('PELICAN_SITEURL', 'http://kylefuller.co.uk')
+SITEURL = environ.get('PELICAN_SITEURL', 'https://fuller.li')
 
 THEME = 'theme'
 
