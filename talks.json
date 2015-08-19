@@ -6,7 +6,7 @@
             "url": "http://360idev.com",
             "country": "us"
         },
-        "status": "upcoming"
+        "slides_url": "https://speakerdeck.com/kylef/practical-declarative-programming-360-idev-2015"
     },
     {
         "name": "Building Resilient API Clients",
