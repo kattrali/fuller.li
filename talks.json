@@ -1,5 +1,14 @@
 [
     {
+        "name": "Embracing Change",
+        "event": {
+            "name": "#{MBLT}Dev",
+            "url": "http://mbltdev.ru",
+            "country": "ru"
+        },
+        "slides_url": "https://speakerdeck.com/kylef/embracing-change-mbltdev-2015"
+    },
+    {
         "name": "Practical Declaritive Programming",
         "event": {
             "name": "360 iDev",
