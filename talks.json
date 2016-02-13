@@ -1,5 +1,23 @@
 [
     {
+        "name": "TBA",
+        "event": {
+            "name": "MCE",
+            "url": "http://mceconf.com",
+            "country": "pl"
+        },
+        "status": "upcoming"
+    },
+    {
+        "name": "TBA",
+        "event": {
+            "name": "Write the Docs",
+            "url": "http://www.meetup.com/Write-The-Docs-London/events/228403383/",
+            "country": "gb"
+        },
+        "status": "upcoming"
+    },
+    {
         "name": "Embracing Change",
         "event": {
             "name": "#{MBLT}Dev",
