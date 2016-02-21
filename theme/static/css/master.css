@@ -430,8 +430,8 @@ body#index h3 {
     display:block;
 }
 
-body#index #projects a.cocoapods {
-    color: rgba(228, 64, 58, 1);
+body#index #projects a.nest {
+    color: rgba(118, 79, 56, 1);
 }
 
 body#index #projects a.pelican {
