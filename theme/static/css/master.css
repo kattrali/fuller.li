@@ -146,6 +146,39 @@ a.github {
     background-position: 0 1px;
 }
 
+body#index h4 {
+    margin: 24px 0 16px 0;
+    font-weight: normal;
+}
+
+body#index h5 {
+    margin: 4px 0;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+body#index h5 a {
+    color: rgba(47, 129, 183, 1);
+}
+
+body#index .project .project-description {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 4px 0 10px 0;
+}
+
+body#index #projects .project li p {
+    color: rgba(80, 80, 80, 1);
+    font-size: 0.8em;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
+
+body#index #projects .project p a:link, body#index #projects .project p a:visited {
+    color: rgba(59, 59, 59, 1);
+    border-bottom: 1px solid rgba(235, 120, 93, 1);
+}
+
 body#page_404 #sidebar, body#page_403 #sidebar {
     display: none;
 }
